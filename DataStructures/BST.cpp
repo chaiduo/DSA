@@ -1,6 +1,6 @@
-// 二叉搜索树（BST）实现
-// 支持：插入、删除、查找、中序遍历
-// 删除时处理了三种情况：叶子节点、单子节点、双子节点（用后继节点替换）
+// Binary Search Tree (BST) Implementation
+// Supports: insert, delete, search, in-order traversal
+// Deletion handles three cases: leaf node, single child node, two children node (replace with successor)
 
 #include <iostream>
 using namespace std;
@@ -18,7 +18,7 @@ class BSTTree
 private:
     TreeNode* root = nullptr;
 
-    // 递归插入：小于当前节点走左子树，大于走右子树
+    // Recursive insert: less than current node go left subtree, greater go right subtree
     TreeNode* insertNode(TreeNode* node, int data) {
         if (node == NULL)
             return new TreeNode(data);
@@ -29,8 +29,8 @@ private:
         return node;
     }
 
-    // 递归删除：找到目标后分情况处理
-    // 双子节点时找右子树最小值（后继）替换，再递归删除后继
+    // Recursive delete: find target then handle different cases
+    // For two children, find minimum in right subtree (successor) to replace, then recursively delete successor
     TreeNode* deleteNode(TreeNode* root, int data) {
         if (root == NULL) {
             cout << "not found " << endl;
@@ -53,7 +53,7 @@ private:
         return root;
     }
 
-    // 中序遍历（BST 中序遍历结果为有序序列）
+    // In-order traversal (BST in-order traversal yields sorted sequence)
     void inOrder(TreeNode* root) {
         if (root == NULL) return;
         inOrder(root->left);
@@ -72,7 +72,7 @@ public:
         root = this->deleteNode(root, data);
     }
 
-    // 递归查找节点
+    // Recursively search for node
     TreeNode* searchNode(TreeNode* root, int data) {
         if (root == NULL || root->data == data) return root;
         if (data < root->data)
@@ -80,7 +80,7 @@ public:
         return searchNode(root->right, data);
     }
 
-    // 找以 root 为根的子树中最小值节点（一路向左）
+    // Find minimum value node in subtree rooted at root (always go left)
     TreeNode* minValueNode(TreeNode* root) {
         TreeNode* current = root;
         while (current && current->left != NULL) {

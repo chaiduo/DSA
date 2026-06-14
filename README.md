@@ -1,101 +1,171 @@
-# 🧠 DSA
+# 🧠 DSA — Data Structures & Algorithms
 
-📌 数据结构与算法学习过程中的个人练习与积累。
-
----
-
-## 📁 目录结构
+> 📌 Personal repository for learning and implementing **Data Structures & Algorithms** from scratch.
 
 ---
 
-## 🏗️ Data Structures — 基础数据结构实现
+## 🚀 Overview
 
-| 📄 文件         | 📝 说明 |
-| ------------- | ----- |
-| `List.cpp`    | 链表    |
-| `stack.cpp`   | 栈     |
-| `queue.cpp`   | 队列    |
-| `heap.cpp`    | 堆     |
-| `BST.cpp`     | 二叉搜索树 |
-| `AVL.cpp`     | AVL 树 |
-| `RBT.cpp`     | 红黑树   |
-| `DisjSet.cpp` | 并查集   |
+This repository contains:
 
----
+* 📚 Classic data structures implementations
+* 🧩 Algorithm templates for coding interviews & contests
+* 🧠 Problem-solving patterns
+* ⚙️ Clean and reusable C++ code
 
-## ⚙️ Algorithms — 算法模板与练习
+It is designed for:
+
+* 💡 Interview preparation
+* 🏆 Competitive programming
+* 📖 Algorithm system learning
 
 ---
 
-### 🔹 基础算法
+## 📂 Repository Structure
 
-* 🔢 排序（`sort.cpp`）
-* 🔍 二分查找（`二分.cpp`）
-* 🔄 单调队列（`单调队列.cpp`）
-* ➕➖✖️➗ 高精度计算（加减乘除）
+```
+
+DSA/
+├── DataStructures/
+├── Algorithms/
+│   ├── Basic/
+│   ├── DynamicProgramming/
+│   ├── Graph/
+│   ├── Math/
+│   ├── String/
+│   └── Advanced/
+└── README.md
+
+```
 
 ---
 
-### 📊 动态规划
+## 🏗️ Data Structures
 
-* 🎒 01 背包
-* 🎒 完全背包
-* 🎒 多重背包（朴素 / 二进制优化）
+Core implementations built from scratch:
+
+* 📌 Linked List
+* 📌 Stack / Queue
+* 📌 Heap (Priority Queue)
+* 📌 Binary Search Tree (BST)
+* 📌 AVL Tree
+* 📌 Red-Black Tree
+* 📌 Disjoint Set Union (DSU)
 
 ---
 
-### 🌐 图论
+## ⚙️ Algorithms
 
-* 🧭 最短路
+### 🔹 Basic Techniques
 
-  * Dijkstra（朴素 / 堆优化）
+* Sorting Algorithms
+* Binary Search
+* Monotonic Queue / Stack
+* Big Integer Operations
+
+---
+
+### 📊 Dynamic Programming
+
+* 0/1 Knapsack
+* Complete Knapsack
+* Multiple Knapsack (Optimized)
+* Classic DP Patterns
+
+---
+
+### 🌐 Graph Theory
+
+* Shortest Path
+
+  * Dijkstra (Heap optimized)
   * Bellman-Ford
   * SPFA
-  * Floyd
-* 🌳 最小生成树
+  * Floyd-Warshall
+
+* Minimum Spanning Tree
 
   * Prim
   * Kruskal
-* 🔗 连通性
 
-  * Tarjan（强连通分量）
-  * 割点 / 割边
-  * 缩点
-* 📍 LCA
+* Connectivity
 
-  * 倍增
-  * Tarjan
-* 🧩 其他
+  * Tarjan SCC
+  * Cut Points / Bridges
+  * Graph Compression
 
-  * 无向图最小环
-  * 染色法判定二分图
+* LCA
+
+  * Binary Lifting
+  * Tarjan Offline
 
 ---
 
-### 🔢 数学
+### 🔢 Mathematics
 
-* ⚡ 快速幂
-* 📐 欧拉函数
-* 🧮 筛法
-
-  * 素数筛
-  * 约数个数 / 约数之和
-  * 欧拉筛
-* 🔁 逆元
+* Fast Power
+* Euler’s Totient Function
+* Prime Sieve (Eratosthenes / Linear)
+* Modular Inverse
 
 ---
 
-### 🔤 字符串
+### 🔤 Strings
 
-* 🔎 KMP
-* 🌀 Manacher
-* 🤖 AC 自动机
+* KMP Algorithm
+* Manacher Algorithm
+* AC Automaton
 
 ---
 
-### 🧱 高级数据结构
+### 🧱 Advanced Data Structures
 
-* 🌲 线段树
-* 🌿 树状数组（BIT）
-* 🔤 Trie
-* 🔗 带权并查集
+* Segment Tree
+* Fenwick Tree (BIT)
+* Trie
+* Weighted DSU
+
+---
+
+## 📈 Highlights
+
+✨ Clean and modular implementations
+✨ Interview-ready templates
+✨ Competitive programming optimized
+✨ Continuously evolving
+
+
+---
+
+## 🎯 Goals
+
+* Build a **complete algorithm template library**
+* Prepare for **coding interviews**
+* Improve **problem-solving intuition**
+* Maintain a long-term reference system
+
+---
+
+## 🛠️ Tech Stack
+
+* C++
+* STL
+* Competitive Programming mindset
+
+---
+
+## ⭐ If this helps you
+
+Feel free to star ⭐ this repo or fork it for your own learning journey.
+
+---
+
+## 📌 Notes
+
+This repo is mainly for personal growth, but open for anyone who wants to:
+
+* Learn algorithms systematically
+* Prepare for interviews
+* Improve coding skills
+
+---

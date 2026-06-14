@@ -1,11 +1,11 @@
-// AVL 树（自平衡二叉搜索树）实现
-// 每次插入/删除后通过旋转维护平衡因子在 [-1, 1] 之间
-// 四种旋转情况：LL（右旋）、RR（左旋）、LR（先左后右）、RL（先右后左）
+// AVL Tree (Self-Balancing Binary Search Tree) Implementation
+// After each insert/delete, maintain balance factor in [-1, 1] through rotations
+// Four rotation cases: LL (right rotate), RR (left rotate), LR (left then right), RL (right then left)
 
 #include <iostream>
 using namespace std;
 
-// 定义二叉树的节点
+// Define binary tree node
 struct TreeNode {
     int data;
     int height;
@@ -15,7 +15,7 @@ struct TreeNode {
     TreeNode(int value):data(value),left(nullptr), right(nullptr){}
 };
 
-// 获取节点的高度
+// Get node height
 int getHeight(TreeNode* node) {
     if (node == nullptr) {
         return 0;
@@ -23,7 +23,7 @@ int getHeight(TreeNode* node) {
     return node->height;
 }
 
-// 右旋操作：用于 LL 情况（左子树过高）
+// Right rotation: for LL case (left subtree too high)
 TreeNode* rightRotate(TreeNode* node) {
     TreeNode* newRoot = node->left;
     TreeNode* temp = newRoot->right;
@@ -37,7 +37,7 @@ TreeNode* rightRotate(TreeNode* node) {
     return newRoot;
 }
 
-// 左旋操作：用于 RR 情况（右子树过高）
+// Left rotation: for RR case (right subtree too high)
 TreeNode* leftRotate(TreeNode* node) {
     TreeNode* newRoot = node->right;
     TreeNode* temp = newRoot->left;
@@ -51,13 +51,13 @@ TreeNode* leftRotate(TreeNode* node) {
     return newRoot;
 }
 
-// 获取节点的平衡因子（左子树高度 - 右子树高度）
+// Get node balance factor (left subtree height - right subtree height)
 int getBalanceFactor(TreeNode* node) {
     if (node == nullptr) return 0;
     return getHeight(node->left) - getHeight(node->right);
 }
 
-// 插入节点到 AVL 树中，插入后检查并修正平衡
+// Insert node into AVL tree, check and fix balance after insertion
 TreeNode* insertNode(TreeNode* root, int value) {
     if (root == nullptr) {
         return new TreeNode(value);
@@ -67,31 +67,31 @@ TreeNode* insertNode(TreeNode* root, int value) {
     } else if (value > root->data) {
         root->right = insertNode(root->right, value);
     } else {
-        cout << "已存在相同数值的节点！" << endl;
+        cout << "Node with same value already exists!" << endl;
         return root;
     }
 
-    // 更新节点的高度
+    // Update node height
     root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
 
-    // 获取节点的平衡因子
+    // Get node balance factor
     int balanceFactor = getBalanceFactor(root);
 
-    // 平衡的四种情况
-    // 左左情况：需要执行右旋操作
+    // Four balance cases
+    // LL case: need right rotation
     if (balanceFactor > 1 && value < root->left->data) {
         return rightRotate(root);
     }
-    // 右右情况：需要执行左旋操作
+    // RR case: need left rotation
     if (balanceFactor < -1 && value > root->right->data) {
         return leftRotate(root);
     }
-    // 左右情况：需要先对左子树进行左旋操作，再对根节点进行右旋操作
+    // LR case: need left rotation on left subtree first, then right rotation on root
     if (balanceFactor > 1 && value > root->left->data) {
         root->left = leftRotate(root->left);
         return rightRotate(root);
     }
-    // 右左情况：需要先对右子树进行右旋操作，再对根节点进行左旋操作
+    // RL case: need right rotation on right subtree first, then left rotation on root
     if (balanceFactor < -1 && value < root->right->data) {
         root->right = rightRotate(root->right);
         return leftRotate(root);
@@ -100,7 +100,7 @@ TreeNode* insertNode(TreeNode* root, int value) {
     return root;
 }
 
-// 中序遍历打印 AVL 树
+// In-order traversal to print AVL tree
 void inOrderTraversal(TreeNode* root) {
     if (root == nullptr) {
         return;
@@ -109,7 +109,7 @@ void inOrderTraversal(TreeNode* root) {
     cout << root->data << " ";
     inOrderTraversal(root->right);
 }
-// 平衡二叉树的删除操作，删除后同样需要修正平衡
+// Delete operation for balanced binary tree, need to fix balance after deletion
 TreeNode* deleteNode(TreeNode* root, int target) {
     if (root == NULL) {
         return NULL;
@@ -119,18 +119,18 @@ TreeNode* deleteNode(TreeNode* root, int target) {
     } else if (target > root->data) {
         root->right = deleteNode(root->right, target);
     } else {
-        // 找到待删除节点
+        // Found node to delete
         if (root->left == NULL && root->right == NULL) {
-            // 叶子节点
+            // Leaf node
             free(root);
             return NULL;
         } else if (root->left == NULL || root->right == NULL) {
-            // 只有一个子节点
+            // Single child node
             TreeNode* child = (root->left != NULL ? root->left : root->right);
             free(root);
             return child;
         } else {
-            // 有两个子节点，找到后继节点
+            // Two children, find successor node
             TreeNode* successor = root->right;
             while (successor->left != NULL) {
                 successor = successor->left;
@@ -140,23 +140,23 @@ TreeNode* deleteNode(TreeNode* root, int target) {
         }
     }
 
-    // 更新节点高度
+    // Update node height
     root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
 
-    // 平衡修正：删除后同样需要检查四种旋转情况
+    // Balance fix: after deletion, also need to check four rotation cases
     int balance = getBalanceFactor(root);
     if (balance > 1 && getBalanceFactor(root->left) >= 0) {
-        // 左左
+        // LL
         return rightRotate(root);
     } else if (balance > 1 && getBalanceFactor(root->left) < 0) {
-        // 左右
+        // LR
         root->left = leftRotate(root->left);
         return rightRotate(root);
     } else if (balance < -1 && getBalanceFactor(root->right) <= 0) {
-        // 右右
+        // RR
         return leftRotate(root);
     } else if (balance < -1 && getBalanceFactor(root->right) > 0) {
-        // 右左
+        // RL
         root->right = rightRotate(root->right);
         return leftRotate(root);
     }
@@ -167,13 +167,13 @@ int main() {
     TreeNode* root = nullptr;
     int values[] = {7, 15, 5, 9, 8, 6, 10};
 
-    // 向 AVL 树中插入节点
+    // Insert nodes into AVL tree
     for (int value : values) {
         root = insertNode(root, value);
     }
 
-    // 打印 AVL 树
-    cout << "AVL 树的中序遍历结果为: ";
+    // Print AVL tree
+    cout << "AVL tree in-order traversal result: ";
     inOrderTraversal(root);
     cout << endl;
 

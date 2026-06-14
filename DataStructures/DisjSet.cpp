@@ -1,6 +1,6 @@
-// 并查集（Disjoint Set / Union-Find）实现
-// 支持：查找（带路径压缩）、合并、判断连通性
-// 路径压缩：find 时将节点直接挂到根节点下，降低后续查询复杂度
+// Disjoint Set (Union-Find) Implementation
+// Supports: find (with path compression), union, check connectivity
+// Path compression: during find, attach node directly to root, reducing future query complexity
 
 #include <iostream>
 #include <vector>
@@ -19,20 +19,20 @@ public:
         fa = new int[N];
         for(int i = 0; i < N; i++)fa[i] = i;
     }
-    // 查找根节点，同时进行路径压缩
+    // Find root node with path compression
     int find(int x){
         if(fa[x] == x)return x;
         return fa[x] = find(fa[x]);
     }
-    // 合并两个集合
+    // Merge two sets
     void merge(int a, int b){
         fa[find(a)] = find(b);
     }
-    // 判断两个元素是否属于同一集合
+    // Check if two elements belong to the same set
     bool isconnect(int a, int b){
         return find(a) == find(b);
     }
-    // 根据边集构建并查集
+    // Build disjoint set from edge list
     void buildSet(vector<vector<int>>& edges){
         for(int i = 0; i < edges.size(); i++){
             if(!isconnect(edges[i][0], edges[i][1])){

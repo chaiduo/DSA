@@ -1,6 +1,6 @@
-// 堆（小根堆）的手动实现
-// 支持：建堆、插入、弹出堆顶、查询堆顶
-// 使用数组存储，基于完全二叉树性质，down/up 操作维护堆序性
+// Heap (Min-Heap) Manual Implementation
+// Supports: build heap, insert, pop top, query top
+// Uses array storage, based on complete binary tree properties, down/up operations maintain heap order
 
 #include <iostream>
 #include <algorithm>
@@ -14,7 +14,7 @@ private:
     int size = 0;
 public:
     Heap(){};
-    // 数组建堆：先放入数组，再从最后一个非叶节点向下调整
+    // Array build heap: first put into array, then adjust down from last non-leaf node
     Heap(int a[], int n){
         size = n;
         for(int i = 1; i <= n; i++) hp[i] = a[i - 1];
@@ -26,7 +26,7 @@ public:
             cout << hp[i] << " ";
         }
     }
-    // 向下调整：将节点与较小子节点交换，维护小根堆性质
+    // Down adjustment: swap node with smaller child, maintain min-heap property
     void down(int u){
         int t = u;
         if(u * 2 <= size && hp[u * 2] < hp[t]) t = u * 2;
@@ -37,7 +37,7 @@ public:
         }
     }
 
-    // 向上调整：插入新节点后与父节点比较，维护堆序性
+    // Up adjustment: after inserting new node, compare with parent, maintain heap order
     void up(int u){
         while(u / 2 && hp[u] < hp[u / 2]){
             swap(hp[u], hp[u / 2]);
@@ -49,7 +49,7 @@ public:
         return hp[1];
     }
 
-    // 弹出堆顶：用最后一个元素覆盖堆顶，再向下调整
+    // Pop top: replace top with last element, then adjust down
     int pop(){
         if(size <= 0)return -1;
         int t = top();
